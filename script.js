@@ -51,4 +51,3 @@ function hapusSapi(index) {
 }
 
 document.getElementById("tambahBtn").addEventListener("click", tambahSapi);
-document.getElementById("tambahBtn").addEventListener("click", tambahSapi);
