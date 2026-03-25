@@ -34,6 +34,9 @@ function tambahSapi() {
         document.getElementById("berat").value = "";
         document.getElementById("umur").value = "";
     }
+    else{
+        alert("Mohon lengkapi semua data!");
+    }
 }
 
 function tampilkanSapi() {
