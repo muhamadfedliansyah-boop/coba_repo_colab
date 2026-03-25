@@ -1,41 +1,47 @@
 let sapi = [];
 
-const hargaSapi = [
-    { jenis: "limosin", harga: 5000000 },
-    { jenis: "brahman", harga: 4000000 },
-    { jenis: "simental", harga: 4500000 },
-    { jenis: "angus", harga: 5500000 }
+const daftarHargaDasar = [
+    { jenis: "limosin", harga: 70000 },
+    { jenis: "brahman", harga: 60000 },
+    { jenis: "simental", harga: 65000 },
+    { jenis: "angus", harga: 75000 }
 ];
 
 function tambahSapi() {
     const JenisSapi = document.getElementById("jenis").value;
-    const BeratSapi = document.getElementById("berat").value;
-    const UmurSapi = document.getElementById("umur").value;
-    const HargaSapi = hargaSapi[hargaSapi.findIndex(item => item.jenis === JenisSapi)].harga;
+    const LingkarDada = parseFloat(document.getElementById("berat").value); 
+    const UmurInput = parseFloat(document.getElementById("umur").value);
 
-    if (JenisSapi && BeratSapi && UmurSapi && HargaSapi) {
-         let id 
-         do {
-            id = "SAPI-" + Math.floor(Math.random() * 100);
-            } while (sapi.some(item => item.idsapi === id));
+    const dataJenis = daftarHargaDasar.find(item => item.jenis === JenisSapi);
+    
+    if (JenisSapi !== "Pilih Jenis Sapi" && LingkarDada && UmurInput) {
+        const beratEstimasi = Math.pow((LingkarDada + 22), 2) / 100;
+        let hargaPerKg = dataJenis ? dataJenis.harga : 50000;
+        if (UmurInput < 1) {
+            hargaPerKg -= 15000;
+        } else if (UmurInput >= 2 && UmurInput <= 3) {
+            hargaPerKg += 10000;
+        } else if (UmurInput > 5) {
+            hargaPerKg -= 5000;
+        }
+        const totalHargaSapi = Math.round(beratEstimasi * hargaPerKg);
 
+        let id = "sapi-".toUpperCase() + Math.floor(Math.random() * 1000);
         sapi.push({
             idsapi: id,
             Jenis: JenisSapi,
-            Berat: BeratSapi,
-            Umur: UmurSapi,
-            Harga: HargaSapi
+            Berat: beratEstimasi.toFixed(1) + " kg",
+            Harga: totalHargaSapi
         });
         
         tampilkanSapi();
         hitungTotal();
 
-        document.getElementById("jenis").value = "";
+        document.getElementById("jenis").value = "Pilih Jenis Sapi";
         document.getElementById("berat").value = "";
         document.getElementById("umur").value = "";
-    }
-    else{
-        alert("Mohon lengkapi semua data!");
+    } else {
+        alert("Mohon isi semua");
     }
 }
 
@@ -49,35 +55,24 @@ function tampilkanSapi() {
         row.insertCell(1).textContent = item.idsapi;
         row.insertCell(2).textContent = item.Jenis.toUpperCase();
         row.insertCell(3).textContent = item.Berat;
-        row.insertCell(4).textContent = item.Harga;
-        row.insertCell(5).textContent = item.Umur;
-        row.insertCell(6).textContent = new Date().toLocaleDateString();
-        const kolom = row.insertCell(7);
-        const tombolHapus = document.createElement("button");
-        tombolHapus.textContent = "Hapus";
-        tombolHapus.addEventListener("click", function() {
-            hapusSapi(index);
-        });
-
+        row.insertCell(4).textContent = "Rp " + item.Harga.toLocaleString('id-ID');
+        row.insertCell(5).textContent = new Date().toLocaleDateString('id-ID');
+        const kolom = row.insertCell(6);
+            const tombolHapus = document.createElement("button");
+            tombolHapus.textContent = "Hapus";
+        
+        tombolHapus.onclick = () => {
+            sapi.splice(index, 1);
+            tampilkanSapi();
+            hitungTotal();
+        };
         kolom.appendChild(tombolHapus);
     });
 }
 
-function hapusSapi(index) {
-    if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-        sapi.splice(index, 1);
-        tampilkanSapi();
-        hitungTotal();
-    }
-}
-
 function hitungTotal() {
-    let total = sapi.length;
-    let totalNilai = 0;
-    sapi.forEach(item => {
-        totalNilai += item.Harga;
-    });
-    document.getElementById("totalJumlah").textContent = total;
+    let totalNilai = sapi.reduce((acc, curr) => acc + curr.Harga, 0);
+    document.getElementById("totalJumlah").textContent = sapi.length;
     document.getElementById("totalNilai").textContent = "Rp " + totalNilai.toLocaleString('id-ID');
 }
 
