@@ -31,6 +31,7 @@ function tambahSapi() {
             idsapi: id,
             Jenis: JenisSapi,
             Berat: beratEstimasi.toFixed(1) + " kg",
+            Umur: UmurInput,
             Harga: totalHargaSapi
         });
         
@@ -56,8 +57,9 @@ function tampilkanSapi() {
         row.insertCell(2).textContent = item.Jenis.toUpperCase();
         row.insertCell(3).textContent = item.Berat;
         row.insertCell(4).textContent = "Rp " + item.Harga.toLocaleString('id-ID');
-        row.insertCell(5).textContent = new Date().toLocaleDateString('id-ID');
-        const kolom = row.insertCell(6);
+        row.insertCell(5).textContent = item.Umur + " tahun";
+        row.insertCell(6).textContent = new Date().toLocaleDateString('id-ID');
+        const kolom = row.insertCell(7);
             const tombolHapus = document.createElement("button");
             tombolHapus.textContent = "Hapus";
         
