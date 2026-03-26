@@ -93,12 +93,10 @@ function editSapi(index) {
     const row = tableBody.rows[index];
     const data = sapi[index];
 
-    // ubah jadi input
     row.cells[2].innerHTML = `<input value="${data.Jenis}">`;
     row.cells[3].innerHTML = `<input value="${parseFloat(data.Berat)}">`;
     row.cells[5].innerHTML = `<input value="${data.Umur}">`;
 
-    // tombol simpan
     const kolomAksi = row.cells[7];
     kolomAksi.innerHTML = "";
 
@@ -126,7 +124,7 @@ function editSapi(index) {
 
         const totalHarga = Math.round(beratEstimasi * hargaPerKg);
 
-        // update data
+   
         sapi[index] = {
             ...sapi[index],
             Jenis: jenisBaru,
