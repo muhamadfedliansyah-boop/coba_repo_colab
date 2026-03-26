@@ -9,13 +9,13 @@ const daftarHargaDasar = [
 
 function tambahSapi() {
     const JenisSapi = document.getElementById("jenis").value;
-    const LingkarDada = parseFloat(document.getElementById("berat").value); 
+    const BeratKg = parseFloat(document.getElementById("berat").value.replace(',', '.')); 
     const UmurInput = parseFloat(document.getElementById("umur").value);
 
     const dataJenis = daftarHargaDasar.find(item => item.jenis === JenisSapi);
     
-    if (JenisSapi !== "Pilih Jenis Sapi" && LingkarDada && UmurInput) {
-        const beratEstimasi = Math.pow((LingkarDada + 22), 2) / 100;
+    if (JenisSapi !== "Pilih Jenis Sapi" && BeratKg && UmurInput) {
+        const beratEstimasi = BeratKg;
         let hargaPerKg = dataJenis ? dataJenis.harga : 50000;
         if (UmurInput < 1) {
             hargaPerKg -= 15000;
