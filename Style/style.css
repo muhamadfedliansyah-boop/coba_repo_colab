@@ -5,7 +5,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
-  background: linear-gradient(135deg, #ced7d5 0%, #F2EFE9 100%);
+  background: linear-gradient(135deg, #c8d7d3 0%, #f4f4db 100%);
   color: #333;
   padding-bottom: 50px;
 }
@@ -40,50 +40,52 @@ h1 {
 .container {
   background: #365244;
   padding: 12px;
-  flex: 0.7; 
+  flex: 0.7;
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
   border: 1px solid #e1e8e5;
-  box-shadow:#666 0px 4px 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 500px;
 }
 
 .container h2 {
-  margin-bottom: 10px;
-  color: #d8d9cf;
+  margin-bottom: 12px;
+  color: #ffffff;
   font-size: 20px;
 }
+
 .pesan-sapi {
-    display: flex;
-    margin-bottom: 13px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    background: white;
+  display: flex;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: white;
 }
 
 .pesan-sapi:hover {
-    border-color: #0a7a5c;
-    transform: translateX(5px);
-    box-shadow: 0 0 10px rgba(10, 122, 92, 0.4);
+  border-color: #0a7a5c;
+  transform: translateX(5px);
+  box-shadow: 0 0 8px rgba(10, 122, 92, 0.4);
 }
 
 .pesan-sapi label {
-    width: 120px; 
-    background: #bfc6c3;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 15px;
-    border-right: 1px solid #ddd;
-    color: #141515;
+  min-width: 120px;
+  background: #bfc6c3;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  border-right: 1px solid #ddd;
+  color: #141515;
 }
 
 .pesan-sapi input, .pesan-sapi select {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    outline: none;
-    font-size: 14px;
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: 14px;
 }
 
 button {
@@ -96,9 +98,10 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 15px;
 }
+
 button:hover {
   background: #0a7a5c;
   transform: translateY(-2px);
@@ -108,32 +111,29 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 450px;
+  width: 100%;
+  max-width: 500px;
 }
 
-#status-container .card:hover {
-  border-color: #173e33;
-  transform: translateX(5px);
-  box-shadow: 0 0 10px rgba(10, 122, 92, 0.4);
-}
-
-#status-container .card1:hover {
-  border-color: #173e33;
-  transform: translateX(5px);
-  box-shadow: 0 0 10px rgba(10, 122, 92, 0.4);
-}
 .card, .card1 {
   background: #e3ece9;
   padding: 20px;
   border-radius: 15px;
-  height: 130px;
-  width: 500px;
+  min-height: 120px;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   border-top: 6px solid #023226;
   box-shadow: 0 8px 25px #141515;
+  transition: 0.3s;
+}
+
+.card:hover, .card1:hover {
+  border-color: #173e33;
+  transform: translateX(4px);
+  box-shadow: 0 0 10px rgba(10, 122, 92, 0.4);
 }
 
 .card img, .card1 img {
@@ -142,14 +142,14 @@ button:hover {
 }
 
 .card .label, .card1 .label {
-  font-size: 20px;
+  font-size: 18px;
   color: #1f190b;
   margin-bottom: 5px;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 .card .value, .card1 .value {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: #2D6A4F;
 }
@@ -165,7 +165,7 @@ button:hover {
 
 .table-title {
   margin-bottom: 15px;
-  color: #d8d9cf;
+  color: #ffffff;
   font-size: 30px;
   text-align: center;
 }
@@ -203,7 +203,7 @@ button:hover {
 }
 
 .tabel-sapi tbody tr:nth-child(even) {
-  background: rgba(147, 146, 146, 0.893); 
+  background: rgba(140, 143, 143, 0.893); 
 }
 
 .tabel-sapi td button {
@@ -226,4 +226,12 @@ button:hover {
   width: 35px;
   height: 35px;
   object-fit: contain;
+}
+.tabel-sapi input, .tabel-sapi select {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff; 
+  text-align: center;
+  width: 100%;
 }
