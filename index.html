@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Sistem Stok Sapi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qurbanku - Sistem Manajemen</title>
     <link rel="stylesheet" href="Style/style.css">
 </head>
 <body>
-    <div class="navbar">
-        <img src="img/icon home.png" alt="Home" width="30px" height="30px"> <span>Home</span>
-    </div>
 
-    <h1>Sistem Pembelian Sapi</h1>
+<div class="navbar" onclick="showForm('sapi')">
+    <img src="img/icon home.png" width="30">
+    <span>Home</span>
+</div>
 
-    <div class="content">
-        
+<h1>Qurbanku</h1>
+
+<div class="tab-navigation">
+    <button class="tab-btn active" id="btn-sapi" onclick="showForm('sapi')">Sapi</button>
+    <button class="tab-btn" id="btn-kambing" onclick="showForm('kambing')">Kambing</button>
+</div>
+
+<div class="content">
+    <div id="form-sapi" class="main-layout">
         <div class="container">
             <h2>Transaksi Penjualan Sapi</h2>
             <div class="pesan-sapi">
                 <label>Jenis Sapi :</label>
-                <select id="jenis">
-                    <option>Pilih Jenis Sapi</option> 
+                <select id="jenisSapi">
+                    <option disabled selected>Pilih Jenis Sapi</option>
                     <option value="limosin">Limosin</option>
                     <option value="brahman">Brahman</option>
                     <option value="simental">Simental</option>
@@ -26,53 +35,106 @@
                 </select>
             </div>
             <div class="pesan-sapi">
-                <label>Berat :</label>
-                <input type="number" id="berat" placeholder="kg">
+                <label>Berat: </label>
+                <input type="number" id="beratSapi" placeholder="KG">
             </div>
             <div class="pesan-sapi">
-                <label>Umur :</label>
-                <input type="number" id="umur" placeholder="tahun">
+                <label>Umur: </label>
+                <input type="number" id="umurSapi" placeholder="Tahun">
             </div>
-            <button id="tambahBtn">Simpan Penjualan</button>
+            <button onclick="tambahSapi()">Simpan Data Sapi</button>
         </div>
 
-        <div id="status-container"> 
+        <div class="status-side">
+            <div class="card" onclick="setStok('Sapi')" style="cursor:pointer">
+                <div class="label">Stok Sapi Tersedia</div>
+                <div class="value" id="stokSapiTersedia">0</div>
+            </div>
             <div class="card">
-                <img src="img/sapi.png" alt="Sapi">
+                <img src="img/sapi.png">
                 <div>
-                    <p class="label">Data Sapi Terjual</p>
-                    <p class="value"><span id="totalJumlah">0</span></p>
+                    <p class="label">Sapi Terjual</p>
+                    <p class="value"><span id="totalJumlahSapi">0</span> Ekor</p>
                 </div>
             </div>
             <div class="card1">
-                <img src="img/uang.png" alt="Uang">
+                <img src="img/uang.png">
                 <div>
-                    <p class="label">Harga Terjual</p>
-                    <p class="value"><span id="totalNilai">Rp 0</span></p>
+                    <p class="label">Total harga</p>
+                    <p class="value"><span id="totalNilaiSapi">Rp 0</span></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="table-container">
-        <h2 class="table-title">Data Sapi Terjual</h2>
+    <div id="form-kambing" class="main-layout hidden">
+        <div class="container">
+            <h2>Transaksi Penjualan Kambing</h2>
+            <div class="pesan-sapi">
+                <label>Jenis :</label>
+                <select id="jenisKambing">
+                    <option disabled selected>Pilih Jenis</option>
+                    <option value="etawa">Etawa</option>
+                    <option value="muara">Muara</option>
+                    <option value="boer">Boer</option>
+                </select>
+            </div>
+            <div class="pesan-sapi">
+                <label>Berat:</label>
+                <input type="number" id="beratKambing" placeholder="KG">
+            </div>
+            <div class="pesan-sapi">
+                <label>Umur:</label>
+                <input type="number" id="umurKambing" placeholder="Tahun">
+            </div>
+            <button onclick="tambahKambing()">Simpan Data Kambing</button>
+        </div>
 
-     <table class="tabel-sapi">
+        <div class="">
+            <div class="card" onclick="setStok('Kambing')">                
+                <div class="info">
+                <div class="label">Stok Kambing Tersedia</div>
+            <div class="value" id="stokKambingTersedia">0</div>
+    </div>
+</div>
+            <div class="card">
+                <img src="">
+                <div>
+                    <p class="label">Kambing Terjual</p>
+                    <p class="value"><span id="totalJumlahKambing">0</span> Ekor</p>
+                </div>
+            </div>
+            <div class="card1">
+                <img src="img/uang.png">
+                <div>
+                    <p class="label">Total harga</p>
+                    <p class="value"><span id="totalNilaiKambing">Rp 0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-container">
+    <h2 class="table-title">Riwayat Transaksi</h2>
+    <table class="tabel-sapi">
         <thead>
             <tr>
                 <th>No</th>
                 <th>ID</th>
+                <th>Hewan</th>
                 <th>Jenis</th>
                 <th>Berat</th>
                 <th>Harga</th>
                 <th>Umur</th>
-                <th>Tanggal Beli</th>
+                <th>Tanggal</th>
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody id="tabelSapi"> </tbody>
+        <tbody id="tabelTerpadu"></tbody>
     </table>
 </div>
-    <script src="script.js"></script>
-</body> 
+
+<script src="script.js"></script>
+</body>
 </html>

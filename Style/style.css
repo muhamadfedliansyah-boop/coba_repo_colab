@@ -4,48 +4,82 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 body {
   background: linear-gradient(135deg, #c8d7d3 0%, #f4f4db 100%);
   color: #333;
   padding-bottom: 50px;
 }
+
 .navbar {
   display: flex;    
   align-items: center;
   gap: 10px; 
   padding: 10px 50px; 
   background-color: #092f25;
-  color: white;
   margin-bottom: 20px;
+  cursor: pointer;
 }
+
 h1 {
   font-family: 'Poppins', sans-serif;
   text-align: center;
   font-size: 35px;
-  padding: 0;
   color: #25300c;
   border-bottom: 4px solid rgb(187, 190, 190); 
   padding-bottom: 8px; 
   margin: 0 auto 30px auto; 
   width: 55%; 
 }
+
+.tab-navigation {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: #bfc6c3;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 0 5px;
+  transition: 0.3s;
+}
+
+.tab-btn.active {
+  background: #113329;
+  color: white;
+}
+
+.hidden { 
+  display: none !important; 
+}
+
 .content {
   display: flex;
   justify-content: center;
-  align-items: flex-start; 
+  width: 100%;
+}
+
+.main-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 30px;
+  width: 100%;
   max-width: 1200px;
   padding: 0 20px;
 }
+
 .container {
   background: #365244;
-  padding: 12px;
-  flex: 0.7;
+  padding: 20px;
+  flex: 2;
   border-radius: 10px;
   border: 1px solid #e1e8e5;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  width: 100%;
-  max-width: 500px;
 }
 
 .container h2 {
@@ -67,7 +101,6 @@ h1 {
 .pesan-sapi:hover {
   border-color: #0a7a5c;
   transform: translateX(5px);
-  box-shadow: 0 0 8px rgba(10, 122, 92, 0.4);
 }
 
 .pesan-sapi label {
@@ -80,7 +113,8 @@ h1 {
   color: #141515;
 }
 
-.pesan-sapi input, .pesan-sapi select {
+.pesan-sapi input, 
+.pesan-sapi select {
   flex: 1;
   border: none;
   padding: 10px;
@@ -107,48 +141,45 @@ button:hover {
   transform: translateY(-2px);
 }
 
-#status-container {
+.status-side {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
-  max-width: 500px;
 }
 
-.card, .card1 {
+.card, 
+.card1 {
   background: #e3ece9;
   padding: 20px;
   border-radius: 15px;
-  min-height: 120px;
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   border-top: 6px solid #023226;
-  box-shadow: 0 8px 25px #141515;
+  box-shadow: 0 8px 25px rgba(20, 21, 21, 0.2);
   transition: 0.3s;
 }
 
-.card:hover, .card1:hover {
-  border-color: #173e33;
+.card:hover, 
+.card1:hover {
   transform: translateX(4px);
-  box-shadow: 0 0 10px rgba(10, 122, 92, 0.4);
 }
 
-.card img, .card1 img {
-  width: 70px;
-  height: 70px;
+.card img, 
+.card1 img {
+  width: 60px;
+  height: 60px;
 }
 
-.card .label, .card1 .label {
-  font-size: 18px;
+.label {
+  font-size: 16px;
   color: #1f190b;
   margin-bottom: 5px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-family: 'Trebuchet MS', sans-serif;
 }
 
-.card .value, .card1 .value {
+.value {
   font-size: 18px;
   font-weight: bold;
   color: #2D6A4F;
@@ -187,51 +218,47 @@ button:hover {
 .tabel-sapi td {
   padding: 12px;
   text-align: center;
-  border: 1px solid #e0e0e0;
-}
-
-.tabel-sapi td {
-  padding: 12px;
-  text-align: center;
   border: 1px solid #2e5f4f; 
-  color: #ffffff;            
+  color: #ffffff;             
   vertical-align: middle;
 }
 
 .tabel-sapi tbody tr:nth-child(odd) {
-  background: rgba(106, 123, 115, 0.932); 
+  background: rgba(106, 123, 115, 0.9); 
 }
 
 .tabel-sapi tbody tr:nth-child(even) {
-  background: rgba(140, 143, 143, 0.893); 
+  background: rgba(140, 143, 143, 0.8); 
 }
 
 .tabel-sapi td button {
   background: transparent; 
   border: none; 
   width: auto;  
-  padding: 5px;            
+  padding: 5px;             
   cursor: pointer;            
   transition: transform 0.2s; 
-  margin: 0 5px;       
-}
-
-.tabel-sapi td button:hover {
-  transform: scale(1.2);   
-  background: rgba(255, 255, 255, 0.1); 
+  display: inline-block;
 }
 
 .tabel-sapi td button img {
-  display: block;
-  width: 35px;
-  height: 35px;
-  object-fit: contain;
+  width: 30px;
+  height: 30px;
 }
-.tabel-sapi input, .tabel-sapi select {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #ffffff; 
-  text-align: center;
-  width: 100%;
+
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container, 
+  .status-side {
+    width: 100%;
+  }
+
+  .status-side {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }
