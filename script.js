@@ -48,6 +48,13 @@ function showForm(target) {
     }
 }
 
+function toggleMenu() {
+    const navLink = document.querySelector('.nav-link');
+    const hamburger = document.querySelector('.hamburger');
+    navLink.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
 function hitungHarga(jenis, berat, umur, arrayHarga) {
     const dataJenis = arrayHarga.find(item => item.jenis.toLowerCase() === jenis.toLowerCase());
     let base = dataJenis ? dataJenis.harga : 50000;
@@ -173,11 +180,11 @@ function editData(index) {
     const row = document.getElementById("tabelTerpadu").rows[index];
     const data = peternakan[index];
 
-    row.cells[3].innerHTML = `<input type="text" id="edit-jenis-${index}" value="${data.jenis}" style="width: 80px">`;
-    row.cells[4].innerHTML = `<input type="number" id="edit-berat-${index}" value="${parseFloat(data.berat)}" style="width: 60px">`;
-    row.cells[6].innerHTML = `<input type="number" id="edit-umur-${index}" value="${data.umur}" style="width: 50px">`;
+    row.cells[3].innerHTML = `<input type="text" id="edit-jenis-${index}" value="${data.jenis}" style="width: 80px; outline: none; background: #4a5a52; color: white; border: 1px solid #5a6b63;">`;
+    row.cells[4].innerHTML = `<input type="number" id="edit-berat-${index}" value="${parseFloat(data.berat)}" style="width: 60px; outline: none; background: #4a5a52; color: white; border: 1px solid #5a6b63;">`;
+    row.cells[6].innerHTML = `<input type="number" id="edit-umur-${index}" value="${data.umur}" style="width: 50px; outline: none; background: #4a5a52; color: white; border: 1px solid #5a6b63;">`;
 
-    row.cells[8].innerHTML = `<button class="btn-aksi" onclick="simpanEdit(${index})">Simpan</button>`;
+    row.cells[8].innerHTML = `<button class="btn-aksi" onclick="simpanEdit(${index})" style="background: lightgreen; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Simpan</button>`;
 }
 
 function simpanEdit(index) {

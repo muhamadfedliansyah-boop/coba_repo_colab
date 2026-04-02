@@ -5,19 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qurbanku - Sistem Manajemen</title>
     <link rel="stylesheet" href="Style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-<div class="navbar" onclick="showForm('sapi')">
-    <img src="img/icon home.png" width="30">
-    <span>Home</span>
-</div>
+    <nav class="navbar">
+        <div class="logo">QURBAN<span>KU</span></div>
+        <ul class="nav-link">
+            <li><a href="#tampilan">BERANDA</a></li>
+            <li><a href="#about">TENTANG KAMI</a></li>
+            <li><a href="#tab-navigation" class="pesan">PESAN SEKARANG</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
 
-<h1>Qurbanku</h1>
+    <header class="tampilan" id="tampilan">
+        <img src="img/kandang sapi dan kambing.png" alt="Background Kandang" class="tampilan-img">
+        
+        <div class="overlay"></div>
+        
+        <div class="tampilan-content">
+            <h1>Sampaikan Kasih Sayang Melalui Qurbanku <br><span>Hewan Sehat & Amanah</span></h1>
+                <p>Setiap tetes darahnya adalah kebaikan. Mari sempurnakan syukur dengan hewan
+                    qurban yang sehat dan terawat sesuai syariat.</p>
+            <div class="tampilan-buttons">
+                <a href="#tab-navigation" class="klik-katalog">PESAN</a>
+            </div>
+        </div>
+    </header>
 
-<div class="tab-navigation">
-    <button class="tab-btn active" id="btn-sapi" onclick="showForm('sapi')">Sapi</button>
-    <button class="tab-btn" id="btn-kambing" onclick="showForm('kambing')">Kambing</button>
+    <div class="divider"></div>
+
+    <div class="about" id="about">
+            <div class="about-text">
+                <h1 class="tujuan-about">Tujuan kami</h1>
+                <p class="text-about">Tujuan utama dari inisiatif ini adalah mentransformasi tata kelola peternakan tradisional
+                    menjadi ekosistem digital yang terukur melalui penerapan teknologi estimasi berat badan akurat untuk memperkuat
+                    posisi tawar, penyediaan akses data harga pasar yang transparan guna menghindari manipulasi harga pihak ketiga, 
+                    serta digitalisasi sistem pencatatan operasional yang sistematis demi menjamin keamanan data dan akurasi analisis
+                    keuntungan usaha secara berkelanjutan.</p>
+            </div>
+    </div>
+
+<h1 class="text"></h1>
+
+<div class="tab-navigation" id="tab-navigation">
+    <button class="tab-btn active" id="btn-sapi" onclick="showForm('sapi')"><i class="fa-solid fa-cow"></i></button>
+    <button class="tab-btn" id="btn-kambing" onclick="showForm('kambing')"><img src="img\logo kambing.png"></button>
 </div>
 
 <div class="content">
@@ -42,21 +80,24 @@
                 <label>Umur: </label>
                 <input type="number" id="umurSapi" placeholder="Tahun">
             </div>
-            <button onclick="tambahSapi()">Simpan Data Sapi</button>
+            <button onclick="tambahSapi()" class="simpansapi">Simpan Data Sapi</button>
         </div>
 
         <div class="status-side">
-            <div class="card" onclick="setStok('Sapi')" style="cursor:pointer">
-                <div class="label">Stok Sapi Tersedia</div>
-                <div class="value" id="stokSapiTersedia">0</div>
-            </div>
-            <div class="card">
-                <img src="img/sapi.png">
-                <div>
-                    <p class="label">Sapi Terjual</p>
-                    <p class="value"><span id="totalJumlahSapi">0</span> Ekor</p>
+            <div class="samping">
+                <div class="card0" onclick="setStok('Sapi')" style="cursor:pointer">
+                    <div class="label">Stok Sapi Tersedia</div>
+                    <div class="value" id="stokSapiTersedia">0</div>
                 </div>
+                <div class="card">
+                    <img src="img/sapi.png">
+                    <div>
+                        <p class="label">Sapi Terjual</p>
+                        <p class="value"><span id="totalJumlahSapi">0</span> Ekor</p>
+                    </div>
             </div>
+            </div>
+
             <div class="card1">
                 <img src="img/uang.png">
                 <div>
@@ -70,8 +111,8 @@
     <div id="form-kambing" class="main-layout hidden">
         <div class="container">
             <h2>Transaksi Penjualan Kambing</h2>
-            <div class="pesan-sapi">
-                <label>Jenis :</label>
+            <div class="pesan-kambing">
+                <label>Jenis kambing :</label>
                 <select id="jenisKambing">
                     <option disabled selected>Pilih Jenis</option>
                     <option value="etawa">Etawa</option>
@@ -79,31 +120,32 @@
                     <option value="boer">Boer</option>
                 </select>
             </div>
-            <div class="pesan-sapi">
+            <div class="pesan-kambing">
                 <label>Berat:</label>
                 <input type="number" id="beratKambing" placeholder="KG">
             </div>
-            <div class="pesan-sapi">
+            <div class="pesan-kambing">
                 <label>Umur:</label>
                 <input type="number" id="umurKambing" placeholder="Tahun">
             </div>
-            <button onclick="tambahKambing()">Simpan Data Kambing</button>
+            <button onclick="tambahKambing()" class="simpankambing">Simpan Data Kambing</button>
         </div>
 
-        <div class="">
-            <div class="card" onclick="setStok('Kambing')">                
-                <div class="info">
-                <div class="label">Stok Kambing Tersedia</div>
-            <div class="value" id="stokKambingTersedia">0</div>
-    </div>
-</div>
-            <div class="card">
-                <img src="">
-                <div>
-                    <p class="label">Kambing Terjual</p>
-                    <p class="value"><span id="totalJumlahKambing">0</span> Ekor</p>
+        <div class="status-side">
+            <div class="samping">
+                <div class="card0" onclick="setStok('Kambing')" style="cursor:pointer">
+                    <div class="label">Stok Kambing Tersedia</div>
+                    <div class="value" id="stokKambingTersedia">0</div>
+                </div>
+                <div class="card">
+                    <img src="img/kambing.png">
+                    <div>
+                        <p class="label">Kambing Terjual</p>
+                        <p class="value"><span id="totalJumlahKambing">0</span> Ekor</p>
+                    </div>
                 </div>
             </div>
+            
             <div class="card1">
                 <img src="img/uang.png">
                 <div>
